@@ -15,7 +15,7 @@ func main() {
 
 	println("------------------------------------------------")
 	println("Peanut test 2 started")
-	println("- Fire 2 go routines and setting 2 deltas")
+	println("- Fire 2 go routines and set 2 deltas")
 	WaitForRoutine(2, &waitGroup)
 	println("Peanut test 2 finished")
 
