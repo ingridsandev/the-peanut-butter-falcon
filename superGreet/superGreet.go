@@ -11,8 +11,10 @@ func main() {
 	go greet("Peanut", channel)
 	go superGreet("butter", channel)
 
-	fmt.Println("greet:", <-channel)
-	fmt.Println("superGreet:", <-channel)
+	fmt.Println("first:", <-channel)
+	fmt.Println("second:", <-channel)
+
+	close(channel)
 }
 
 func greet(name string, ch chan string) {
