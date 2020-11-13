@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 func main() {
@@ -10,7 +11,7 @@ func main() {
 
 	println("Peanut test 1 started")
 	println("- Fire 2 go routines but setting only one delta")
-	WaitForRoutine(2, &waitGroup)
+	WaitForRoutine(1, &waitGroup)
 	println("Peanut test 1 finished")
 
 	println("------------------------------------------------")
@@ -22,20 +23,20 @@ func main() {
 	println("------------------------------------------------")
 }
 
-func WaitForRoutine(delta int, waitGroup *sync.WaitGroup) {
+func WaitForRoutine(delta int, wg *sync.WaitGroup) {
 
-	waitGroup.Add(delta)
+	wg.Add(delta)
 
-	go SayHello("peanut", waitGroup)
-	go SayHello("butter", waitGroup)
+	go SayHello("peanut", wg)
+	go SayHello("butter", wg)
 
-	waitGroup.Wait()
+	wg.Wait()
 }
 
 func SayHello(name string, wg *sync.WaitGroup){
-	/*if name == "peanut" {
+	if name == "peanut" {
 		time.Sleep(2 * time.Second)
-	}*/
+	}
 	fmt.Println("Hello", name)
 
 	wg.Done()
