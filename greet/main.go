@@ -8,19 +8,20 @@ import (
 
 func main() {
 	var waitGroup sync.WaitGroup
+	startedAt := time.Now()
 
-	println("Peanut test 1 started")
-	println("- Fire 2 go routines but setting only one delta")
+	fmt.Printf("Peanut test 1 started at %v \n", time.Now())
+	fmt.Println("- Fire 2 go routines but setting only one delta")
 	WaitForRoutine(1, &waitGroup)
-	println("Peanut test 1 finished")
+	fmt.Printf("Peanut test 1 finished at %v and took %v to complete\n", time.Now(), time.Since(startedAt))
 
-	println("------------------------------------------------")
-	println("Peanut test 2 started")
-	println("- Fire 2 go routines and set 2 deltas")
+	fmt.Println("------------------------------------------------")
+	fmt.Printf("Peanut test 2 started at %v \n", time.Now())
+	fmt.Println("- Fire 2 go routines and set 2 deltas")
 	WaitForRoutine(2, &waitGroup)
-	println("Peanut test 2 finished")
+	fmt.Printf("Peanut test 2 finished at %v and took %v to complete\n", time.Now(), time.Since(startedAt))
 
-	println("------------------------------------------------")
+	fmt.Println("------------------------------------------------")
 }
 
 func WaitForRoutine(delta int, wg *sync.WaitGroup) {
