@@ -12,19 +12,19 @@ func main() {
 
 	fmt.Printf("Peanut test 1 started at %v \n", time.Now())
 	fmt.Println("- Fire 2 go routines but setting only one delta")
-	WaitForRoutine(1, &waitGroup)
+	FireAndWaitForRoutine(1, &waitGroup)
 	fmt.Printf("Peanut test 1 finished at %v and took %v to complete\n", time.Now(), time.Since(startedAt))
 
 	fmt.Println("------------------------------------------------")
 	fmt.Printf("Peanut test 2 started at %v \n", time.Now())
 	fmt.Println("- Fire 2 go routines and set 2 deltas")
-	WaitForRoutine(2, &waitGroup)
+	FireAndWaitForRoutine(2, &waitGroup)
 	fmt.Printf("Peanut test 2 finished at %v and took %v to complete\n", time.Now(), time.Since(startedAt))
 
 	fmt.Println("------------------------------------------------")
 }
 
-func WaitForRoutine(delta int, wg *sync.WaitGroup) {
+func FireAndWaitForRoutine(delta int, wg *sync.WaitGroup) {
 
 	wg.Add(delta)
 
